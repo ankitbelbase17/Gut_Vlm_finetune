@@ -1,7 +1,6 @@
-# Progress Report: Fine-tuning Mobile-O for Gastrointestinal Hallucination Detection
+# Fine-tuning Mobile-O for Gastrointestinal Hallucination Detection
 
-**Project by:** Ankit Belbase  
-**Supervisor:** [Professor's Name]  
+
 **Date:** June 2026  
 **Compute:** Clariden HPC cluster (GH200 GPU, 96 GB HBM3), Lightning AI (A100/H100)
 
