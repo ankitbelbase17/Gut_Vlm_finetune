@@ -1,0 +1,38 @@
+[
+  {
+    "demo_id": 1,
+    "image": "demo_data\\vqa\\images\\demo_1.jpg",
+    "question": "Are there any abnormalities in the image? Check all that are present.",
+    "expected_answer": "polyp; short-segment barretts",
+    "category": "Polyp detection",
+    "source": "Polyps",
+    "original_img_id": "cl8k2u1s21gqr0832gpsvh3h1"
+  },
+  {
+    "demo_id": 2,
+    "image": "demo_data\\vqa\\images\\demo_2.jpg",
+    "question": "Are there any abnormalities in the image? Check all that are present.",
+    "expected_answer": "oesophagitis; short-segment barretts",
+    "category": "Esophagitis",
+    "source": "Esophagitis",
+    "original_img_id": "clb0kvxwn92hc074y0g1i2dzr"
+  },
+  {
+    "demo_id": 3,
+    "image": "demo_data\\vqa\\images\\demo_3.jpg",
+    "question": "What color is the abnormality? If more than one separate with ;",
+    "expected_answer": "pink; yellow; green; white",
+    "category": "Ulcerative colitis",
+    "source": "Ulcerative Colitis",
+    "original_img_id": "cla820gm2s583071udee247gq"
+  },
+  {
+    "demo_id": 4,
+    "image": "demo_data\\vqa\\images\\demo_4.jpg",
+    "question": "Are there any instruments in the image? Check all that are present.",
+    "expected_answer": "biopsy forceps; metal clip",
+    "category": "Instrument presence",
+    "source": "Instrument",
+    "original_img_id": "clb0lbwzedp38086u1e7c9372"
+  }
+]
