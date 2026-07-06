@@ -579,7 +579,7 @@ These evaluation scripts exist in `Hallucination-Aware-VLM/eval_scripts/` but ne
 
 ---
 
-## 13. Key Takeaways for the Professor
+## 13. Key Takeaways 
 
 1. **We successfully fine-tuned Mobile-O in two stages** — first for GI domain adaptation, then for hallucination detection — using the Gut-VLM dataset's approach.
 
