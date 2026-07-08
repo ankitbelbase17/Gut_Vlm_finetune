@@ -30,7 +30,7 @@ class LlavaMetaModel:
         if hasattr(config, "mm_vision_tower"):
             self.vision_tower = build_vision_tower(config, delay_load=True)
             self.mm_projector = build_vision_projector(config)
-        if hasattr(config, "diffusion_name_or_path"):
+        if getattr(config, "diffusion_name_or_path", None):
             self.dit = build_sana(config)
             self.vae = build_vae(config)
             self.diffusion_connector = MobileConditioningProjector(
