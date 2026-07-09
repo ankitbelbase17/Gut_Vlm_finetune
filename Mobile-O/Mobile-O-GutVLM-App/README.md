@@ -159,26 +159,43 @@ If you don't have a physical iPhone, `mlx_infer.py` + `mlx_app.py` run the same
 Core ML vision encoder + MLX LLM directly on an Apple Silicon Mac via a local
 Gradio UI — no Xcode, no PyTorch, no device required.
 
-**Requirements:** an Apple Silicon Mac (M1 or later — Intel Macs can't run MLX),
-Python 3.10+.
+**Requirements:** an Apple Silicon Mac (M1 or later — Intel Macs can't run MLX).
 
-**Quickest path — clone and run, no other setup:**
+**Easiest — double-click `GutVLM.command`:**
 ```bash
 git clone https://github.com/ankitbelbase17/Gut_Vlm_finetune.git
+```
+Then in Finder, open `Gut_Vlm_finetune/Mobile-O/Mobile-O-GutVLM-App/` and
+double-click **`GutVLM.command`**. First run sets up a virtual environment and
+installs dependencies (a minute or two, one time only); every run after that
+just launches the app. It automatically:
+- finds a working arm64 Python 3.10+ on your system (MLX needs Apple Silicon —
+  the launcher checks for this itself, since a plain `python3` on PATH can
+  silently be an Intel/Rosetta build depending on what else you have installed),
+- downloads the pre-exported model (~890 MB) from HuggingFace on first run,
+- and opens `http://localhost:7860` in your browser once it's ready.
+
+Close the Terminal window it opens (or press Ctrl+C in it) to stop the app.
+
+**From the terminal instead**, if you'd rather manage the environment yourself:
+```bash
 cd Gut_Vlm_finetune/Mobile-O/Mobile-O-GutVLM-App
 
-python -m venv .venv-mlx && source .venv-mlx/bin/activate   # or a conda env
+# must be an arm64 Python 3.10+ -- check with:
+#   python3 -c "import platform,sys; print(platform.machine(), sys.version_info)"
+# (Homebrew's `brew install python@3.11` is a reliable source on Apple Silicon)
+python3 -m venv .venv-mlx && source .venv-mlx/bin/activate
 pip install -r requirements-mlx.txt
 
 python mlx_app.py
 ```
-That's it — with no flags, `mlx_app.py` automatically downloads the pre-exported
-model (~890 MB) from
+Either way, with no flags `mlx_app.py` downloads the model from
 [`GutVLMmodels/experiments_checkpoints`](https://huggingface.co/GutVLMmodels/experiments_checkpoints/tree/main/gutvlm_epoch4_mlx_coreml)
-on first run (cached locally after that), loads it, and opens the UI at
-`http://localhost:7860`.
+on first run and caches it locally after that.
 
-**Using your own export or a different HF repo instead:**
+**Using your own export or a different HF repo instead** (terminal path only —
+edit the `python mlx_app.py` line in `GutVLM.command` if you want the
+double-click launcher to use these too):
 ```bash
 # a local export.py output (see §1 above):
 python mlx_app.py --exported-dir exported_models --hf-repo ""
