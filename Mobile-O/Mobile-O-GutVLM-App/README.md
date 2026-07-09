@@ -153,6 +153,50 @@ the two-tab UI. After that it runs fully offline.
 
 ---
 
+### 3b. Or run it natively on a Mac (no iPhone needed)
+
+If you don't have a physical iPhone, `mlx_infer.py` + `mlx_app.py` run the same
+Core ML vision encoder + MLX LLM directly on an Apple Silicon Mac via a local
+Gradio UI — no Xcode, no PyTorch, no device required.
+
+**Requirements:** an Apple Silicon Mac (M1 or later — Intel Macs can't run MLX),
+Python 3.10+.
+
+**Quickest path — clone and run, no other setup:**
+```bash
+git clone https://github.com/ankitbelbase17/Gut_Vlm_finetune.git
+cd Gut_Vlm_finetune/Mobile-O/Mobile-O-GutVLM-App
+
+python -m venv .venv-mlx && source .venv-mlx/bin/activate   # or a conda env
+pip install -r requirements-mlx.txt
+
+python mlx_app.py
+```
+That's it — with no flags, `mlx_app.py` automatically downloads the pre-exported
+model (~890 MB) from
+[`GutVLMmodels/experiments_checkpoints`](https://huggingface.co/GutVLMmodels/experiments_checkpoints/tree/main/gutvlm_epoch4_mlx_coreml)
+on first run (cached locally after that), loads it, and opens the UI at
+`http://localhost:7860`.
+
+**Using your own export or a different HF repo instead:**
+```bash
+# a local export.py output (see §1 above):
+python mlx_app.py --exported-dir exported_models --hf-repo ""
+
+# a different HF repo, with vision_encoder.mlpackage/ + llm/ living directly
+# at the repo root instead of in a subfolder:
+python mlx_app.py --hf-repo <username>/<repo-name> --hf-subfolder ""
+
+# a different HF repo with its own subfolder:
+python mlx_app.py --hf-repo <username>/<repo-name> --hf-subfolder <folder>
+```
+
+`requirements-mlx.txt` is a much lighter runtime-only dependency set than
+`requirements.txt` (no torch/diffusers/timm — those are only needed for the
+export step itself, §1 above).
+
+---
+
 ## Using the app
 
 **VQA tab** — tap the card to pick an endoscopy image, type a question

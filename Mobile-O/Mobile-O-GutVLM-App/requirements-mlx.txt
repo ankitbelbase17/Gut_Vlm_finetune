@@ -1,0 +1,21 @@
+# Runtime-only dependencies for mlx_app.py / mlx_infer.py -- running the
+# already-exported Core ML + MLX GutVLM model on an Apple Silicon Mac.
+#
+# This does NOT include torch/diffusers/timm/coremltools's strict version pins --
+# those are only needed to *export* a checkpoint (see export.py and
+# requirements.txt). If you're just running the app against a pre-exported
+# model (local or downloaded via --hf-repo), this is all you need.
+#
+#   pip install -r requirements-mlx.txt
+#   python mlx_app.py --hf-repo <username>/<repo-name>
+
+mlx>=0.20.0
+mlx-lm>=0.19.0
+transformers==5.9.0   # mlx-lm 0.31.x crashes on import with transformers>=5.10ish
+                      # (AutoTokenizer.register bug) -- pin this exact version
+numpy<2               # coremltools' predict() path assumes NumPy's old implicit
+                      # scalar conversion for size-1 arrays; NumPy 2.x hard-errors
+coremltools>=8.0
+pillow
+gradio
+huggingface_hub
