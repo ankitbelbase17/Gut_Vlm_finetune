@@ -1,0 +1,14 @@
+# Runtime-only dependencies for onnx_infer.py -- running the already-exported ONNX
+# GutVLM model on ANY laptop (Windows / Linux / Intel-Mac / Apple-Mac) via ONNX
+# Runtime on the CPU. No CoreML, no MLX, no PyTorch needed at inference time.
+#
+#   pip install -r requirements-onnx.txt
+#   python onnx_infer.py --onnx-dir onnx_models --image img.jpg --question "..."
+#
+# Exporting a fresh checkpoint (onnx_export.py) additionally needs torch +
+# onnxscript -- see requirements.txt / the README.
+
+onnxruntime>=1.20      # CPU build; runs everywhere
+transformers>=4.44     # AutoTokenizer + CLIPImageProcessor only
+pillow
+numpy
